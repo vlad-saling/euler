@@ -1,0 +1,54 @@
+// 2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
+
+// What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
+
+// 232792560 is the answer, had to look it up to check if i am heading to right direction because despite all optimisation the script is taking too long in sass to compute
+
+
+
+// Why I am checking or not checking each number between 1 and 20:
+
+//  1: NOT CHECKING - for obvious reasons
+//  2: NOT CHECKING - since checked number must be divisible by 20 and 20 is even number, that is no need to check it
+//  3: NOT CHECKING - see 12
+//  4: NOT CHECKING - see 12
+//  5: NOT CHECKING - multplies of 20 have 0 as last digit
+//  6: NOT CHECKING - has to be divisible by 2 (see 2) and 3 (see 3)
+//  7: NOT CHECKING - see 14
+//  8: CHECKING     -
+//  9: NOT CHECKING - see 18
+// 10: NOT CHECKING - for obvious reasons
+// 11: CHECKING     -
+// 12: CHECKING     - number devisible by 12 must be devisible by 3 and 4 (saving rules)
+// 13: CHECKING     -
+// 14: CHECKING     - number devisible by 14 must be devisible by 2 and 7 (saving rules)
+// 15: NOT CHECKING - number devisible by 15 must be devisible by 3 (see 3) and 5 (see 5) (saving rules, rules for 12 and 5 cover this)
+// 16: CHECKING     -
+// 17: CHECKING     -
+// 18: CHECKING     - number devisible by 18 must be devisible by 2 and 9 (saving rules)
+// 19: NOT CHECKING - to ensure divisibility by 19 we increment the the base checked number by number equal to 20*19 (saving rules)
+// 20: NOT CHECKING - see 19
+
+// source: https://www.tcc.fl.edu/Current/Academics/LearningCommons/First%20Floor%20Documents/DivisibilityRules.pdf
+
+
+$i: 380;
+
+$con: true;
+
+@while $con {
+
+    @debug checking $i;
+
+
+        @if ($i % 18 == 0) and ($i % 17 == 0) and ($i % 16 == 0) and ($i % 14 == 0) and ($i % 13 == 0) and ($i % 12 == 0) and ($i % 11 == 0) and ($i % 8 == 0) 
+        {
+                $con: false !global;
+                @debug smallest positive number that is evenly divisible by all of the numbers from 1 to 20 is $i
+        }
+
+        @else {$i: $i + 380;}
+      
+
+
+}

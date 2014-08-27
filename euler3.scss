@@ -1,0 +1,31 @@
+// The prime factors of 13195 are 5, 7, 13 and 29.
+
+// What is the largest prime factor of the number 600851475143 ?
+
+//http://math.stackexchange.com/questions/187061/find-the-largest-prime-factor
+
+
+$largeNumber: 600851475143;
+$numberStore: $largeNumber;
+$i: 2;
+
+
+@while $i <= $largeNumber {
+
+    @if $largeNumber % $i == 0 {
+       //@debug "=========== "$largeNumber" is dividable by "$i" ============";
+       $numberStore: $largeNumber !global;
+       $largeNumber: $largeNumber / $i !global;
+       $i: 2 !global;
+    }
+
+    @else {
+        $i: $i + 1 !global;
+    }
+}
+    
+@debug  $numberStore;
+
+
+
+

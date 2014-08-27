@@ -1,0 +1,141 @@
+// A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.
+
+// Find the largest palindrome made from the product of two 3-digit numbers.
+
+
+//Brief explanation of optimisation:
+//SASS itself is too slow for not making any kind of optimisation, therefore two heavy tricks had to be applied.
+// trick #1: compare stored palindrom to new number before it is checked for being palindrom. this way you won't need to check each number in sequence
+// trick #2: once you identify a palindrom, store minimal number for one of the two variables and don't check numbers below that value, 
+//           since they mathematically cannot exceed the one you already found and that goes for both variables used for generating numbers
+
+
+$i: 999;
+$j: 999;
+
+$mini: 100; //storing minimal i to avoid checking too small numbers that cannot exceed current palindrom
+
+
+$pp: 0;
+
+$k:1;
+$l:0;
+
+$length: 0;
+
+$match: true;
+
+$con: true; //main loop switch
+
+$conSub: true; //string checker switch
+
+
+$largest: 0; //palindrom storage
+$temp: 0; //palindrom storage
+
+@while $con {
+    
+    $pp: $i * $j !global; //shoudl be switched to $i * $j
+    $temp: $i * $j !global; //storing number just in case it is palindrom
+
+
+    //adding option to skip palindrom test if number is not bigger than currently stored biggest palindrome
+    @if $largest < $temp {
+        $conSub: true !global; 
+    }
+    @else {
+         $conSub: false !global;
+         $match: false !global;
+    }
+   
+
+    $pp: inspect($pp);
+    $pplength: str-length($pp);
+
+   
+    //check if str-length is odd or even
+    @if ($pplength % 2 == 0) {
+        $length: $pplength/2 !global;
+    }
+    @else {
+        $length: ($pplength - 1)/2 !global;
+    }
+
+   
+
+    @while $conSub {
+
+        @if $length > 0 {
+
+            @if ((str-slice($pp, $k, $k)) == (str-slice($pp, $pplength - $l, $pplength - $l))) {
+                        //@debug "TRUE comparing"  (str-slice($pp, $k, $k)) "and"  (str-slice($pp, $pplength - $l, $pplength - $l));
+                        $k:$k + 1 !global;
+                        $l:$l + 1 !global;
+                        $length: $length - 1 !global;
+                        
+                }
+            @else {
+                //@debug "FALSE comparing"  (str-slice($pp, $k, $k)) "and" (str-slice($pp, $pplength - $l, $pplength - $l));
+                $match: false !global;
+                $k:1 !global;
+                $l:0 !global;
+                $conSub: false !global;
+            }
+        }
+
+        @else {
+
+            $conSub: false !global;
+
+        }
+
+    }
+
+
+
+
+    @if $match {
+        
+       @if ($largest < $temp) {
+            $largest: $temp !global;
+            $mini: $i !global;
+       }
+ 
+        @debug $largest "is a palindrom";
+
+    }
+
+    @else {
+
+
+        @if ($i > $mini) {
+             $i: $i - 1 !global;
+        }
+
+        @else if ($i == $mini) {
+            $i: 999 !global;
+            $j: $j - 1 !global;
+            @debug $j;
+           
+        }
+
+        @if ($j <= 99 or $j <= $mini) {
+
+            $con: false !global;
+            @debug $largest "is a the largest palindrom";
+            
+        }
+
+        $match: true !global;
+   
+    }
+    
+  
+}
+
+
+
+
+
+
+
