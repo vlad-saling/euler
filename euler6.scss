@@ -1,0 +1,23 @@
+// The sum of the squares of the first ten natural numbers is,
+
+// 1^2 + 2^2 + ... + 102 = 385
+// The square of the sum of the first ten natural numbers is,
+
+// (1 + 2 + ... + 10)^2 = 552 = 3025
+// Hence the difference between the sum of the squares of the first ten natural numbers and the square of the sum is 3025 − 385 = 2640.
+
+// Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.
+
+$i:1;
+$store1: 0;
+$store2: 0;
+
+@for $i from 1 through 100 {
+
+    $store1: $store1 + $i*$i !global;
+    $store2: $store2 + $i !global;
+    $i: $i + 1 !global;
+
+}
+
+@debug $store2*$store2 - $store1;
