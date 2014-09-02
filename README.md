@@ -7,3 +7,7 @@ Note: Some solution may have bash version to check, whether algorithm works in c
 
 ![Project Euler flare](https://projecteuler.net/profile/vladsaling.png)
 
+
+Notes:
+
+7th problem take too much time to compute, so it has a JS version with same algorithm as a proof of concept.
