@@ -1,4 +1,4 @@
-euler
+Project Euler problems in SASS
 =====
 
 [Euler problems](https://projecteuler.net/problems) solved in sass.
