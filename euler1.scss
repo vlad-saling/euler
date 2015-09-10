@@ -3,16 +3,11 @@
 $j: 0;
 
 @for $i from 1 to 1000 {
-   @if $i % 5 == 0 {
-     $j: $j + $i !global 
-   }
-
-   @else if $i % 3 == 0 {
+   @if $i % 5 == 0 or $i % 3 == 0 {
      $j: $j + $i !global 
    }
 
 }
 
- @debug $j 
+@debug $j
 
- 
