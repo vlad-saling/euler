@@ -24,50 +24,50 @@ $match = true;
 //this means, that we are looking for the 10000th number (not 10001st) as we already skipped two  (2 and 3)
 
 var compute = new function() {
-while ($con <= 10000) {
-    $j = 3;
-    $match = true;
+    while ($con <= 10000) {
+        $j = 3;
+        $match = true;
 
-    // shortcut - if number is not divisible by 3, it is enough to check if it is divisible by something up its third
-    if (($i % 3) != 0) {
-        $factor = ($i - ($i % 3))/3;
+        // shortcut - if number is not divisible by 3, it is enough to check if it is divisible by something up its third
+        if (($i % 3) != 0) {
+            $factor = ($i - ($i % 3))/3;
 
-        while ($j < $factor) {
+            while ($j < $factor) {
 
-   
-            if (($i % $j) == 0) {
-                $match = false;
-                $j = $i; //kill switch so cycle doesn't check rest of the numbers as well
+
+                if (($i % $j) == 0) {
+                    $match = false;
+                    $j = $i; //kill switch so cycle doesn't check rest of the numbers as well
+                }
+
+
+
+                $j = $j + 1;
+
+
             }
-
-
-
-            $j = $j + 1;
-
-
         }
+
+        else {
+            $match = false;
+        }
+
+
+        if ($match) {
+            $con = $con + 1;
+            console.log($i + "is" + $con + "th prime");
+        }
+        else {
+         //  @debug $i "is not a prime";
+        }
+
+
+
+
+        $i = $i + 2;
+
+
     }
-
-    else {
-        $match = false;
-    }
-
-
-    if ($match) {
-        $con = $con + 1;
-        console.log($i + "is" + $con + "th prime");
-    }
-    else {
-     //  @debug $i "is not a prime";
-    }
-
-    
-
-
-    $i = $i + 2;
-
-    
-}
 }();
 
 
