@@ -1,9 +1,9 @@
-Project Euler problems in SASS
+Project Euler problems in SASS and Javascript
 =====
 
-[Euler problems](https://projecteuler.net/problems) solved in sass.
+[Euler problems](https://projecteuler.net/problems) solved in sass and Javascript.
 
-Some solution may have bash (or JS) version as a proof that algorithm works even if it takes too long to compute in sass.
+Some solution may have bash version just for fun.
 
 ![Project Euler flare](https://projecteuler.net/profile/vladsaling.png)
 
