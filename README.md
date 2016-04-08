@@ -10,3 +10,6 @@ Some solution may have bash version just for fun.
 
 Notes:
 7th problem take too much time to compute in sass.
+
+
+
